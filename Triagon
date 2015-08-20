@@ -1,0 +1,114 @@
+public class Triagon
+    {
+        public double Square (int a, int b)
+        {
+        double Sq = (0.5*a*b);
+        return Sq;
+        }
+        public double Square (int a, int b, int c)
+        {
+            int s1=0;
+            int s2=0;
+            if (a>b & a>c)
+            {
+                s1 = b;
+                s2 = c;
+            }
+            else if (b>a & b> c)
+            {
+                s1 = a;
+                s2 = c;
+            }
+            else if (c>a & c>b)
+            {
+                s1 = a;
+                s2 = b;
+            }
+            double Sq = (0.5 * s1 * s2);
+            return Sq;
+        }
+    }
+    
+     public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+            label4.Visible = false;
+            label5.Visible = false;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (textBox1.Text!="" & textBox2.Text!="" & textBox3.Text !="")
+            {
+                try
+                {
+                    int a = Convert.ToInt32(textBox1.Text);
+                    int b = Convert.ToInt32(textBox2.Text);
+                    int c = Convert.ToInt32(textBox3.Text);
+                    Triagon Tr = new Triagon();
+                    double s = Tr.Square(a, b, c);
+                    label5.Text = s.ToString();
+                    label4.Visible = true;
+                    label5.Visible = true;
+                }
+                catch
+                {
+                    MessageBox.Show("Возможно, введеные данные некорректны", "Невозможно рассчитать площадь");
+                }                
+            }
+            else if (textBox1.Text!="" & textBox2.Text!="")
+            {
+                try
+                {
+                    int a = Convert.ToInt32(textBox1.Text);
+                    int b = Convert.ToInt32(textBox2.Text);
+                    Triagon Tr = new Triagon();
+                    double s = Tr.Square(a, b);
+                    label5.Text = s.ToString();
+                    label4.Visible = true;
+                    label5.Visible = true;
+                }
+                catch
+                {
+                    MessageBox.Show("Возможно, введеные данные некорректны", "Невозможно рассчитать площадь");
+                }    
+            }
+            else if (textBox2.Text!="" & textBox3.Text !="")
+            {
+                try
+                {
+                    int a = Convert.ToInt32(textBox3.Text);
+                    int b = Convert.ToInt32(textBox2.Text);
+                    Triagon Tr = new Triagon();
+                    double s = Tr.Square(a, b);
+                    label5.Text = s.ToString();
+                    label4.Visible = true;
+                    label5.Visible = true;
+                }
+                catch
+                {
+                    MessageBox.Show("Возможно, введеные данные некорректны", "Невозможно рассчитать площадь");
+                }   
+            }
+            else if (textBox1.Text!="" & textBox3.Text !="")
+            {
+                try
+                {
+                    int a = Convert.ToInt32(textBox1.Text);
+                    int b = Convert.ToInt32(textBox3.Text);
+                    Triagon Tr = new Triagon();
+                    double s = Tr.Square(a, b);
+                    label5.Text = s.ToString();
+                    label4.Visible = true;
+                    label5.Visible = true;
+                }
+                catch
+                {
+                    MessageBox.Show("Возможно, введеные данные некорректны", "Невозможно рассчитать площадь");
+                }   
+            }
+            else { MessageBox.Show("Возможно, введеные данные некорректны", "Невозможно рассчитать площадь"); }
+        }
+    }
