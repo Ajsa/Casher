@@ -34,11 +34,9 @@ public class Triagon
         public Form1()
         {
             InitializeComponent();
-            label4.Visible = false;
-            label5.Visible = false;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)//для проверки работы функций Square класса Triagon
         {
             if (textBox1.Text!="" & textBox2.Text!="" & textBox3.Text !="")
             {
@@ -50,8 +48,6 @@ public class Triagon
                     Triagon Tr = new Triagon();
                     double s = Tr.Square(a, b, c);
                     label5.Text = s.ToString();
-                    label4.Visible = true;
-                    label5.Visible = true;
                 }
                 catch
                 {
@@ -67,8 +63,6 @@ public class Triagon
                     Triagon Tr = new Triagon();
                     double s = Tr.Square(a, b);
                     label5.Text = s.ToString();
-                    label4.Visible = true;
-                    label5.Visible = true;
                 }
                 catch
                 {
@@ -84,8 +78,6 @@ public class Triagon
                     Triagon Tr = new Triagon();
                     double s = Tr.Square(a, b);
                     label5.Text = s.ToString();
-                    label4.Visible = true;
-                    label5.Visible = true;
                 }
                 catch
                 {
@@ -101,8 +93,6 @@ public class Triagon
                     Triagon Tr = new Triagon();
                     double s = Tr.Square(a, b);
                     label5.Text = s.ToString();
-                    label4.Visible = true;
-                    label5.Visible = true;
                 }
                 catch
                 {
