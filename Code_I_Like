@@ -1,0 +1,62 @@
+//Здесь представлен код взаимодействия с купюроприемником (часть рабочего проекта)
+
+int c = 0;            
+            c = CashTaker.tolk(serialPort1);
+            if (c!=0)
+            {
+                try
+                {
+                    //код для сохранения в отдельный файл информации о числе внесенных купюр
+                    string p = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ancassa_log.xml");//считаем число внесенных купюр
+                    XDocument xdoc = XDocument.Load(p);
+                    int k = 0;
+                    foreach(XElement xlem in xdoc.Root.Elements("terminal"))
+                    {
+                        if (xlem.FirstAttribute.Value==Globals.TerNUM)
+                        {
+                            k = Convert.ToInt32(xlem.Element("cashtaker").Element("cashcount").FirstAttribute.Value);
+                        }
+                    }                    
+                    k = k + 1;
+                    foreach (XElement el in xdoc.Root.Elements("terminal"))
+                    {
+                        if (el.FirstAttribute.Value == Globals.TerNUM)
+                        {
+                            el.Element("cashtaker").Element("cashcount").FirstAttribute.SetValue(k.ToString());
+                        }
+                    }
+                    xdoc.Save(p);
+                }
+                catch { TerMesBox.OK(error); } 
+            }
+            
+            //информация о внесенной сумме выводится на экран
+            vnes = vnes + c;
+            if (vnes != 0)
+            {
+                label10.Visible = true;
+                label11.Text = vnes.ToString();
+                
+            }
+
+            //информация о остатке средств, которые необходимо внести, выводится на экран
+            ost = Globals.Sum - vnes;
+            label8.Text = ost.ToString();
+            
+            //разные действия в зависимости от необходимости выдать сдачу
+            if (ost <= 0)
+            {
+                int monback = ost * (-1);
+                label2.Text = "Оплата завершена!";
+                timer1.Stop();
+                label3.Text = "Вы можете получить сдачу наличными или перевести ее на мобильный телефон";
+                label12.Text = monback.ToString();
+                if (monback != 0)
+                {
+                    label13.Text = "Выберите способ получения сдачи";
+                    button2.Visible = true;
+                    button3.Visible = true;
+                }
+                else { button4.Visible = true; }
+
+               
